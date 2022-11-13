@@ -1,7 +1,5 @@
 # Automated-software-testing-with-playwright
 
-The 2nd part "Page Objects Pattern" from
-
 'Learn Playwright an open source testing framework from Microsoft and also the best competition to Cypress and Selenium!' Udemy course
 https://globallogic.udemy.com/course/automated-software-testing-with-playwright/learn/lecture/29638228#overview
 
