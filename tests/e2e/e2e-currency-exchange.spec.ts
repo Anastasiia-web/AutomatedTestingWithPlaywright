@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test.describe.only('Should exchange currency', () => {
+test.describe('Should exchange currency', () => {
     // login
     test.beforeEach(async ({ page }) => {
         await page.goto('http://zero.webappsecurity.com/index.html')

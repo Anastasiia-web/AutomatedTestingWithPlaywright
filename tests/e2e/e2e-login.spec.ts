@@ -1,12 +1,16 @@
 import { test, expect } from '@playwright/test'
+import { LoginPage } from '../../page-objects/LoginPage'
 
 // test.describe - for test suit
 // test.describe.parallel - for tests executing in parallel to increase test execution speed
-test.describe.parallel('Login / Logout Flow', () => {
+test.describe.parallel.only('Login / Logout Flow', () => {
+
+    let loginPage: LoginPage
 
     // Creating Before Hook to avoid duplication as we're working with the same page in 2 tests
     test.beforeEach(async ({ page }) => {
-        await page.goto('http://zero.webappsecurity.com/')
+        loginPage = new LoginPage(page)                               // access to consructor from LoginPage.ts from 'page-objects' folder
+        await loginPage.visit()                                       // using the method created in 'LoginPage.ts' from 'page-objects' folder
     })
 
     // Negative Scenario
@@ -36,4 +40,4 @@ test.describe.parallel('Login / Logout Flow', () => {
 })
 // npx playwright test tests/e2e/e2e-login.spec.ts      // to run the tests from a paticular folder
 // npm run tests:e2e                                    // to run the tests according to the script in 'package.json' file
-
+// can be    test.describe.parallel.only   for running ONLY this test suit
