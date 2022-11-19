@@ -1,36 +1,41 @@
 import { test, expect } from '@playwright/test'
+import { HomePage } from '../../page-objects/HomePage'
+import { FeedbackPage } from '../../page-objects/FeedbackPage'
 
-test.describe('Feedback form', () => {
+test.describe.only('Feedback form', () => {
+
+    let homePage: HomePage
+    let feedbackPage: FeedbackPage
     // hook
     test.beforeEach(async ({ page }) => {
-        await page.goto('http://zero.webappsecurity.com/index.html')
-        await page.click('#feedback')
+        homePage = new HomePage(page)
+        feedbackPage = new FeedbackPage(page)
+
+        await homePage.visit()
+        await homePage.feedbackForm()
     })
     // Reset feedback form test
     test('Reset feedback form', async ({ page }) => {
-        await page.type('#name', 'User')
-        await page.type('#email', 'a@gmail.com')
-        await page.type('#subject', 'Test subject')
-        await page.type('#comment', 'Test comment')
+        await feedbackPage.fillingForm(
+            'User',
+            'a@gmail.com',
+            'Test subject',
+            'Test comment')
 
-        await page.click("input[name='clear']")   // if there's no id or a class is generic as "btn"   => "input[name='somename']"
-
-        const nameInput = await page.locator('#name')
-        const commentInput = await page.locator('#comment')
-
-        await expect(nameInput).toBeEmpty()
-        await expect(commentInput).toBeEmpty()
+        await feedbackPage.resetFilledForm()
+        await feedbackPage.assertReset()
     })
 
     // Submit feedback form test
     test('Submit feedback form', async ({ page }) => {
-        await page.type('#name', 'User')
-        await page.type('#email', 'testsautomation7@gmail.com')
-        await page.type('#subject', 'Test subject')
-        await page.type('#comment', 'Test comment')
+        await feedbackPage.fillingForm(
+            'User',
+            'testsautomation7@gmail.com',
+            'Test subject',
+            'Test comment')
 
-        await page.click("input[type='submit']")
-        await page.waitForSelector('#feedback-title')         // visible after sending the feedback form => works as 'expect' here (shorter assertion version)
+        await feedbackPage.submitFilledForm()
+        await feedbackPage.submitFormSuccess()
     })
 })
 

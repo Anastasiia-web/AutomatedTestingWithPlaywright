@@ -5,12 +5,14 @@ export class HomePage {
     readonly page: Page              // page (variable name we create): Page (type)
     readonly signInButton: Locator   // signInButton (variable name we create): Locator (type)
     readonly searchField: Locator         // search (variable name we create): Locator (type)
+    readonly feedbackFormButton: Locator         // search (variable name we create): Locator (type)
 
     // create constructor
     constructor(page: Page) {
         this.page = page
         this.signInButton = page.locator('#signin_button')
         this.searchField = page.locator('#searchTerm')
+        this.feedbackFormButton = page.locator('#feedback')
     }
 
     // create functions
@@ -25,5 +27,9 @@ export class HomePage {
     async searchFor(phrase: string) {
         await this.searchField.type(phrase)
         await this.page.keyboard.press('Enter')                       // simulating keyboard press 'Enter'
+    }
+
+    async feedbackForm() {
+        await this.feedbackFormButton.click()
     }
 }
