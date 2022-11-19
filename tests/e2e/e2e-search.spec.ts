@@ -1,25 +1,25 @@
 import { test, expect } from '@playwright/test'
+import { HomePage } from '../../page-objects/HomePage'
 
-test.describe('Search results', () => {
+test.describe.only('Search results', () => {
+    let homePage: HomePage
     // hook
     test.beforeEach(async ({ page }) => {
-        await page.goto('http://zero.webappsecurity.com/index.html')
+        homePage = new HomePage(page)
+        await homePage.visit()
     })
     // Search function test (positive)
     test('Should find search results', async ({ page }) => {
-        // await page.goto('http://zero.webappsecurity.com/index.html')   // if no hook before the test
-        await page.type('#searchTerm', 'bank')
-        await page.keyboard.press('Enter')                    // function for using keyboard in Playwright tests
+        await homePage.searchFor('bank')
 
-        const numberOfLinks = await page.locator('li > a')    // when there's no id/name/type  => 'li > a' for a list of 'a href' is possible
+        const numberOfLinks = page.locator('li > a') // when there's no id/name/type  => 'li > a' for a list of 'a href' is possible
         await expect(numberOfLinks).toHaveCount(2)
     })
     // Search function test (negative)
     test('Should not find search result', async ({ page }) => {
-        await page.type('#searchTerm', 'fghg')
-        await page.keyboard.press('Enter')
+        await homePage.searchFor('fghg')
 
-        const searchResults = await page.locator('.top_offset')
+        const searchResults = page.locator('.top_offset')
         await expect(searchResults).toContainText('No results were found for the query:')
     })
 })

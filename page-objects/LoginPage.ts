@@ -8,7 +8,7 @@ export class LoginPage {
     readonly submitButton: Locator
     readonly errorMessage: Locator
 
-    // Init slectors using constructor
+    // Init selectors using constructor
     constructor(page: Page) {
         this.page = page
         this.usernameInput = page.locator('#user_login')
@@ -18,10 +18,6 @@ export class LoginPage {
     }
 
     // Define login page methods
-    async visit() {
-        await this.page.goto('http://zero.webappsecurity.com/')
-
-    }
 
     async login(username: string, password: string) {
         await this.usernameInput.type(username)
