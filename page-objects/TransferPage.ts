@@ -1,7 +1,8 @@
 import { expect, Page, Locator } from '@playwright/test'
+import { AbstractPage } from './AbstractPage'                               // needed to use 'page' for superconstructor
 
-export class TransferPage {
-    readonly page: Page
+export class TransferPage extends AbstractPage {                             // 'TransferPage' class is extended to use 'AbstractPage' class
+    // readonly page: Page                                                  // 'page' is used now from 'AbstractPage.ts by superconstructor
     readonly transferFundsLink: Locator
     readonly fromAccountDropdown: Locator
     readonly toAccountDropdown: Locator
@@ -12,7 +13,8 @@ export class TransferPage {
     readonly alertSuccess: Locator
 
     constructor(page: Page) {
-        this.page = page
+        // this.page = page                                                // 'page' is used now from 'AbstractPage.ts by superconstructor
+        super(page)                                                        // superconstractor created for using 'page' from 'AbstractPage.ts'
         this.transferFundsLink = page.locator('text=Transfer Funds')
         this.fromAccountDropdown = page.locator('#tf_fromAccountId')
         this.toAccountDropdown = page.locator('#tf_toAccountId')

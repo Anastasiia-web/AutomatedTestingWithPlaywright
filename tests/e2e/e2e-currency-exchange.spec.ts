@@ -5,7 +5,7 @@ import { CurrencyExchangePage } from '../../page-objects/CurrencyExchangePage'
 import { Navbar } from '../../page-objects/components/Navbar'
 
 
-test.describe.only('Should exchange currency', () => {
+test.describe('Should exchange currency', () => {
     // login
     let homePage: HomePage
     let loginPage: LoginPage

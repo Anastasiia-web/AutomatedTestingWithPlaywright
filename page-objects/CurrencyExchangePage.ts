@@ -1,7 +1,8 @@
 import { Page, Locator, expect } from '@playwright/test'
+import { AbstractPage } from './AbstractPage'
 
-export class CurrencyExchangePage {
-    readonly page: Page
+export class CurrencyExchangePage extends AbstractPage {
+    // readonly page: Page                                             // 'page' is used from 'AbstractPage.ts by superconstructor
     readonly purchaseForeignCurrencyLink: Locator
     readonly boardHeader: Locator
     readonly currencySelectorDropdown: Locator
@@ -14,7 +15,8 @@ export class CurrencyExchangePage {
     readonly alert: Locator
 
     constructor(page: Page) {
-        this.page = page
+        // this.page = page
+        super(page)                                                     // 'page' is used from 'AbstractPage.ts by superconstructor
         this.purchaseForeignCurrencyLink = page.locator('text = Purchase Foreign Currency')
         this.boardHeader = page.locator('#ui-tabs-3 > .board-header')
         this.currencySelectorDropdown = page.locator('#pc_currency')

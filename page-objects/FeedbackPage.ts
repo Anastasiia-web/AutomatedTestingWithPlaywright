@@ -1,8 +1,9 @@
 import { expect, Locator, Page } from '@playwright/test'
+import { AbstractPage } from './AbstractPage'
 
-export class FeedbackPage {
+export class FeedbackPage extends AbstractPage {
     // Define selectors
-    readonly page: Page
+    // readonly page: Page                                         // is used if there's no superconstractor
     readonly nameInput: Locator
     readonly emailInput: Locator
     readonly subjectInput: Locator
@@ -13,7 +14,8 @@ export class FeedbackPage {
 
     // Init selectors using constructor
     constructor(page: Page) {
-        this.page = page
+        // this.page = page                                         // is used if there's no superconstractor
+        super(page)                                                 // 'page' is imported from 'AbstractPage.ts'
         this.nameInput = page.locator('#name')
         this.emailInput = page.locator('#email')
         this.subjectInput = page.locator('#subject')

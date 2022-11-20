@@ -4,7 +4,7 @@ import { HomePage } from '../../page-objects/HomePage'        // importing class
 
 // test.describe - for test suit
 // test.describe.parallel - for tests executing in parallel to increase test execution speed
-test.describe.parallel('Login / Logout Flow', () => {
+test.describe.parallel.only('Login / Logout Flow', () => {
     // creating variables for using classes
     let loginPage: LoginPage
     let homePage: HomePage
@@ -23,6 +23,7 @@ test.describe.parallel('Login / Logout Flow', () => {
         // use methods from imported classes
         await homePage.clickSignIn()
         await loginPage.login('invalid username', 'invalid password')
+        await loginPage.wait(3000)                                // 3 sec
         await loginPage.assertErrorMessage()
     })
 
