@@ -31,8 +31,7 @@ test.describe.parallel('Login / Logout Flow', () => {
         await homePage.clickSignIn()
         await loginPage.login('username', 'password')
 
-        const accountSummaryTab = page.locator('#account_summary_tab')
-        expect(accountSummaryTab).toBeVisible
+        await loginPage.successfulLogin()
 
         await page.goto('http://zero.webappsecurity.com/logout.html')               // logout test 
         await expect(page).toHaveURL('http://zero.webappsecurity.com/index.html')   // redirect to login page after logout

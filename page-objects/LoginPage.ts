@@ -7,6 +7,7 @@ export class LoginPage {
     readonly passwordInput: Locator
     readonly submitButton: Locator
     readonly errorMessage: Locator
+    readonly accountSummaryTab: Locator
 
     // Init selectors using constructor
     constructor(page: Page) {
@@ -15,6 +16,7 @@ export class LoginPage {
         this.passwordInput = page.locator('#user_password')
         this.submitButton = page.locator('text = Sign in')
         this.errorMessage = page.locator('.alert-error')
+        this.accountSummaryTab = page.locator('#account_summary_tab')
     }
 
     // Define login page methods
@@ -27,5 +29,9 @@ export class LoginPage {
 
     async assertErrorMessage() {
         await expect(this.errorMessage).toContainText('Login and/or password are wrong.')
+    }
+
+    async successfulLogin() {
+        await expect(this.accountSummaryTab).toBeVisible()
     }
 }

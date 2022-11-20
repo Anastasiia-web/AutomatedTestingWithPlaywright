@@ -1,18 +1,24 @@
 import { test, expect } from '@playwright/test'
+import { LoginPage } from '../../page-objects/LoginPage'      // importing class created
+import { HomePage } from '../../page-objects/HomePage'
+
 
 test.describe("Filter transactions", () => {
+    let homePage: HomePage
+    let loginPage: LoginPage
+
     // hook
     test.beforeEach(async ({ page }) => {
-        await page.goto('http://zero.webappsecurity.com/index.html')
-        await page.click('#signin_button')
-        await page.type('#user_login', 'username')
-        await page.type('#user_password', 'password')
-        await page.click('text = Sign in')                       // or alternatively:    await page.click("input[name='submit']")  
+        homePage = new HomePage(page)
+        loginPage = new LoginPage(page)
+
+        await homePage.visit()
+        await homePage.clickSignIn()
+        await loginPage.login('username', 'password')
     })
 
     test('Successful login', async ({ page }) => {
-        const signInBtn = page.locator("input[name='submit']")
-        expect(signInBtn).not.toBeVisible
+        await loginPage.successfulLogin()
     })
 
     test('Verify the results for each account', async ({ page }) => {

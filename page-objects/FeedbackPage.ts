@@ -23,7 +23,7 @@ export class FeedbackPage {
         this.submitSuccess = page.locator('#feedback-title')
     }
 
-    // Define login page methods
+    // Define methods
 
     async fillingForm(name: string, email: string, subject: string, comment: string) {
         await this.nameInput.type(name)

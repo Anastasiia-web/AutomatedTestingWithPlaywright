@@ -15,7 +15,7 @@ export class HomePage {
         this.feedbackFormButton = page.locator('#feedback')
     }
 
-    // create functions
+    // create functions/methods
     async visit() {
         await this.page.goto('http://zero.webappsecurity.com/')
     }
