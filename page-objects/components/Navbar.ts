@@ -22,7 +22,6 @@ export class Navbar {
     }
 
     // Define methods
-
     async clickOnTab(tabName) {
         switch (tabName) {
             case 'Account Summary':
