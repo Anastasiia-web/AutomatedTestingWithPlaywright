@@ -13,8 +13,8 @@ test.describe('Visual Regression Testing', () => {
     })
 })
 
-// npx playwright test --config=visual.config.ts --project=webkit        for specifying config file
-// for the FIRST time running there's an error => snapshot is made by playwright. It's saved in the automatically created folder in 'visual' folder (created by playwright)
-// you need to generate snapshots for every project (chromium, firefox, so on) at first
-// npx playwright test --config=visual.config.ts --project=chromium
-// npx playwright test --config=visual.config.ts --project=firefox
+/* npx playwright test --config=visual.config.ts --project=webkit        for specifying config file
+for the FIRST time running there's an ERROR => snapshot is made by playwright. It's saved in the automatically created folder in 'visual' folder (created by playwright)
+you need to generate snapshots for every project (chromium, firefox, so on) at first
+npx playwright test --config=visual.config.ts --project=chromium
+npx playwright test --config=visual.config.ts --project=firefox*/
