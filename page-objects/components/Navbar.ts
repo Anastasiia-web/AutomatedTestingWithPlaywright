@@ -1,4 +1,4 @@
-import { expect, Locator, Page } from '@playwright/test'
+import { expect, Locator, Page } from '@playwright/test'              // expect can be deleted or left in case not to forget for future tests
 
 export class Navbar {
     // create variables

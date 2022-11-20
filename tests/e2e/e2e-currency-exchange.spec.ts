@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test'
+import { test, expect } from '@playwright/test'               // expect is not used for now, can be deleted
 import { LoginPage } from '../../page-objects/LoginPage'      // importing class created
 import { HomePage } from '../../page-objects/HomePage'
 import { CurrencyExchangePage } from '../../page-objects/CurrencyExchangePage'

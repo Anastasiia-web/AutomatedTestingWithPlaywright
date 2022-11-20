@@ -1,5 +1,5 @@
 // created for superconstructor (class inheritance purpose)
-import { Page, Locator, expect } from '@playwright/test'
+import { Page, Locator, expect } from '@playwright/test'                 // Locator, expect are not used for now, can be deleted
 
 export class AbstractPage {
     readonly page: Page

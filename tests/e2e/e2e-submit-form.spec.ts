@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test'
+import { test, expect } from '@playwright/test'                  // expect is not used for now, can be deleted
 import { HomePage } from '../../page-objects/HomePage'
 import { FeedbackPage } from '../../page-objects/FeedbackPage'
 
