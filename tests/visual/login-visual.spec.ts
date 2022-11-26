@@ -2,7 +2,7 @@ import { test } from '@playwright/test'
 import { HomePage } from '../../page-objects/HomePage'
 import { LoginPage } from '../../page-objects/LoginPage'
 
-test.describe.only('Login Page Visual Tests', () => {
+test.describe('Login Page Visual Tests', () => {
     let homepage: HomePage                               // type of HomePage
     let loginpage: LoginPage                             // type of LoginPage
 
@@ -33,3 +33,6 @@ for the FIRST time running there's an ERROR => snapshot is made by playwright. I
 you need to generate snapshots for every project (chromium, firefox, so on) at first
 npx playwright test --config=visual.config.ts --project=chromium
 npx playwright test --config=visual.config.ts --project=firefox*/
+
+// npx playwright test --config=visual.config.ts --project=firefox --update-snapshots      =>   updating snapshots for Firefox Project
+// or simply use "npm run nameOfTheScriptFromPackageJsonFile" which you create in 'package.json' file, e.g. tests:visual or tests:visual:webkit:update
