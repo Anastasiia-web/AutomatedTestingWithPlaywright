@@ -5,7 +5,6 @@ test.describe.parallel('API Testing', () => {
 
     test('API Test - Assert Response Status', async ({ request }) => {
         const response = await request.get(`${baseUrl}/users/2`)             //  user with 'id: 2'
-
         expect(response.status()).toBe(200)
     })
 
@@ -17,7 +16,7 @@ test.describe.parallel('API Testing', () => {
     test('GET Request - Get User Details', async ({ request }) => {
         const response = await request.get(`${baseUrl}/users/1`)              //  user with 'id: 1'
         const responseBody = JSON.parse(await response.text())
-        //    console.log(responseBody)
+        // console.log(responseBody)
         expect(response.status()).toBe(200)
         expect(responseBody.data.id).toBe(1)
         expect(responseBody.data.first_name).toBe('George')
@@ -48,7 +47,6 @@ test.describe.parallel('API Testing', () => {
             }
         })
         const responseBody = JSON.parse(await response.text())
-        console.log(responseBody)
         expect(response.status()).toBe(200)
         expect(responseBody.token).toBeTruthy()                               // to check that it's not empty or is not missing
     })
@@ -60,9 +58,26 @@ test.describe.parallel('API Testing', () => {
             }
         })
         const responseBody = JSON.parse(await response.text())
-        console.log(responseBody)
         expect(response.status()).toBe(400)
-        expect(responseBody.error).toBe('Missing password')                    // to check that it's not empty or is not missing
+        expect(responseBody.error).toBe('Missing password')
+    })
+
+    test('PUT Request - Update User', async ({ request }) => {
+        const response = await request.put(`${baseUrl}/users/330`, {
+            data: {
+                "job": "qa automation",
+            }
+        })
+        const responseBody = JSON.parse(await response.text())
+        expect(response.status()).toBe(200)
+        expect(responseBody.updatedAt).toBeTruthy                              // to check that it's not empty or is not missing
+        expect(responseBody.job).toBe('qa automation')
+    })
+
+    test('DELETE Request - delete User', async ({ request }) => {
+        const response = await request.delete(`${baseUrl}/users/2`)
+
+        expect(response.status()).toBe(204)
     })
 })
 
